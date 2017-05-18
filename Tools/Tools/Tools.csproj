@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Host\LocalMachine.cs" />
+    <Compile Include="Host\OS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reconnaissance.cs" />
+    <Compile Include="WinAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
