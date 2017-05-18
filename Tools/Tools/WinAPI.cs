@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Tools
 {
-    public static class WinAPI
+    internal static class WinAPI
     {
         // Static flags used to pass in parameters of win32 api calls.
         public const uint WM_COMMAND = 0x0111,

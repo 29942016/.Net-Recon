@@ -7,17 +7,18 @@ namespace Tools.Host
     public class OS
     {
         public readonly string Name,
-                               Edition,
                                ServicePack,
                                Version,
-                               Bits;
+                               Architecture;
 
         public OS()
         {
             OperatingSystem os = Environment.OSVersion;
+
             Version = string.Format("{0}.{1}", os.Version.Major, os.Version.Minor);
             ServicePack = os.ServicePack;
             Name = OperatingSystemLookup.FirstOrDefault(x => x.Key == Version).Value;
+            Architecture = (Environment.Is64BitOperatingSystem) ? "x64" : "x86";
         }
 
         public override string ToString()

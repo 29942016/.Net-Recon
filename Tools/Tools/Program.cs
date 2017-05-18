@@ -4,13 +4,12 @@ using Tools.Host;
 
 namespace Tools
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             OutputLocalMachineInfo();
-            Console.WriteLine("----");
-            System.Threading.Thread.Sleep(50000);
+            Console.ReadLine();
         }
 
         private static void OutputLocalMachineInfo()
@@ -24,6 +23,7 @@ namespace Tools
                 Console.WriteLine("{0}: {1}",property.Name, propertyValue);
             }
 
+            Console.WriteLine("RunLevel: {0}", LocalMachine.Privilege);
         }
     }
 }
