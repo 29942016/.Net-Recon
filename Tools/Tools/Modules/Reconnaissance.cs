@@ -25,7 +25,7 @@ namespace Tools.Modules
 
         public static HashSet<AdapterInterface> ARP(string args)
         {
-            Process arpCmdlet = new Process()
+            Process cmdlet = new Process()
             {
                 StartInfo = new ProcessStartInfo()
                 {
@@ -37,21 +37,23 @@ namespace Tools.Modules
                 }
             };
 
-            arpCmdlet.Start();
+            cmdlet.Start();
 
             string stdOut = string.Empty;
 
-            while (!arpCmdlet.StandardOutput.EndOfStream)
-                stdOut += arpCmdlet.StandardOutput.ReadLine();
+            while (!cmdlet.StandardOutput.EndOfStream)
+                stdOut += cmdlet.StandardOutput.ReadLine();
 
             HashSet<AdapterInterface> arpTable = ParseArpString(stdOut);
             return arpTable;
         }
 
-        private static HashSet<AdapterInterface> ParseArpString(string input)
+        internal static HashSet<AdapterInterface> ParseArpString(string input)
         {
-            string adapterFilter     = @"Interface.*?(?=Interface|$)";
-           
+            if (string.IsNullOrEmpty(input))
+                return null;
+
+            string adapterFilter = @"Interface.*?(?=Interface|$)";
             HashSet<AdapterInterface> interfaces = new HashSet<AdapterInterface>();
 
             foreach (Match adapter in Regex.Matches(input, adapterFilter))
