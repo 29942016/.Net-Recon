@@ -11,5 +11,13 @@ namespace Tools.Static
             [Description("User")]
             User
         }
+
+        public enum IPType
+        {
+            Static,
+            Dynamic
+        }
     }
+
+
 }

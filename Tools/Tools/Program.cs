@@ -8,7 +8,10 @@ namespace Tools
     {
         static void Main(string[] args)
         {
-            OutputLocalMachineInfo();
+            //OutputLocalMachineInfo();
+
+            Console.WriteLine("proc done");
+
             Console.ReadLine();
         }
 
