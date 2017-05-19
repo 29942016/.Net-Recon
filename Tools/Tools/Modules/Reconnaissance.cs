@@ -4,7 +4,9 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using Tools.Host;
+using Tools.Structures;
 using Tools.Static;
+using System.Text.RegularExpressions;
 
 namespace Tools.Modules
 {
@@ -21,9 +23,8 @@ namespace Tools.Modules
             return reply;
         }
 
-        public static HashSet<ARP> ARP(string args)
+        public static HashSet<AdapterInterface> ARP(string args)
         {
-            HashSet<ARP> arpTable = new HashSet<ARP>();
             Process arpCmdlet = new Process()
             {
                 StartInfo = new ProcessStartInfo()
@@ -38,14 +39,25 @@ namespace Tools.Modules
 
             arpCmdlet.Start();
 
-            //while (!arpCmdlet.StandardOutput.EndOfStream)
-            //{
-            //    string line = arpCmdlet.StandardOutput.ReadLine();
-            //}
+            string stdOut = string.Empty;
 
+            while (!arpCmdlet.StandardOutput.EndOfStream)
+                stdOut += arpCmdlet.StandardOutput.ReadLine();
+
+            HashSet<AdapterInterface> arpTable = ParseArpString(stdOut);
             return arpTable;
         }
 
+        private static HashSet<AdapterInterface> ParseArpString(string input)
+        {
+            string adapterFilter     = @"Interface.*?(?=Interface|$)";
+           
+            HashSet<AdapterInterface> interfaces = new HashSet<AdapterInterface>();
 
+            foreach (Match adapter in Regex.Matches(input, adapterFilter))
+                interfaces.Add(new AdapterInterface(adapter.Value));
+
+            return interfaces;
+        }
     }
 }

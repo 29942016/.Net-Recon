@@ -14,8 +14,10 @@ namespace Tools.Static
 
         public enum IPType
         {
-            Static,
-            Dynamic
+            [Description("static")]
+            @static,
+            [Description("dynamic")]
+            dynamic
         }
     }
 

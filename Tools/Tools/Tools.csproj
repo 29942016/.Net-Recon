@@ -48,7 +48,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\Reconnaissance.cs" />
-    <Compile Include="Static\clsARPcs.cs" />
+    <Compile Include="Structures\AdapterInterface.cs" />
+    <Compile Include="Structures\sARPcs.cs" />
     <Compile Include="Static\Enumerations.cs" />
     <Compile Include="WinAPI.cs" />
   </ItemGroup>

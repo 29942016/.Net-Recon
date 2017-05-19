@@ -2,9 +2,9 @@
 using System.Net.NetworkInformation;
 using static Tools.Static.Enumerations;
 
-namespace Tools.Static
+namespace Tools.Structures
 {
-    class ARP
+    public class ARP
     {
         public IPAddress IP { get; private set; }
         public PhysicalAddress MAC { get; private set; }
@@ -15,12 +15,6 @@ namespace Tools.Static
             IP = ip;
             MAC = mac;
             AddressType = type;
-        }
-
-        public ARP(string unparsedArpString)
-        {
-
-
         }
     }
 

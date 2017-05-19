@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Tools.Host;
+using Tools.Modules;
 
 namespace Tools
 {
@@ -10,6 +11,7 @@ namespace Tools
         {
             //OutputLocalMachineInfo();
 
+            Reconnaissance.ARP("");
             Console.WriteLine("proc done");
 
             Console.ReadLine();
