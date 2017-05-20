@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using Tools.Host;
 using Tools.Modules;
+using Tools.Structures;
 
 namespace Tools
 {
@@ -10,12 +12,13 @@ namespace Tools
     {
         static void Main(string[] args)
         {
-            //OutputLocalMachineInfo();
-
-            NetworkInterface[] adps = NetworkInterface.GetAllNetworkInterfaces();
-
             var result = Reconnaissance.ARP();
-            Console.WriteLine("proc done");
+
+            foreach (AdapterInterface @interface in result)
+            {
+                Console.WriteLine(@interface.Adapter.Description);
+                Console.WriteLine(string.Join("\n", @interface.Addresses.Select(x => x.IP)));
+            }
 
             Console.ReadLine();
         }

@@ -8,6 +8,9 @@ using static Tools.Static.Enumerations;
 
 namespace Tools.Structures
 {
+    /// <summary>
+    /// Stores an adapter and every address that can be resolved using that adapter.
+    /// </summary>
     public class AdapterInterface
     {
         public NetworkInterface Adapter { get; private set; }

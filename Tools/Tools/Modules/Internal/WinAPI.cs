@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Tools
+namespace Tools.Modules.Internal
 {
     internal static class WinAPI
     {
