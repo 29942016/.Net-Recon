@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tools.Structures
 {
     public class RemoteShare
     {
-        public bool Available { get; private set; }
+        public bool Available {get; private set;}
         public string Host { get; private set; }
         public string Network { get; private set; }
 
@@ -23,10 +19,6 @@ namespace Tools.Structures
                 Host = result[1];
                 Network = string.Join(" ",result.Skip(2));
             }
-
-            Console.WriteLine(result);
         }
-
-
     }
 }

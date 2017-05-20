@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Reflection;
 using Tools.Host;
 using Tools.Modules;
-using Tools.Static;
 
 namespace Tools
 {
@@ -13,14 +9,14 @@ namespace Tools
     {
         static void Main(string[] args)
         {
-            var result = Reconnaissance.ARP();
+            var result = Reconnaissance.SendARP();
+            var drives = Reconnaissance.GetMounts();
+            Console.WriteLine(drives);
 
-            List<IPAddress> ips = new List<IPAddress>();
+//            List<IPAddress> ips = new List<IPAddress>();
 
-            foreach (var adapter in result)
-                ips.AddRange(adapter.Addresses.Select(x => x.IP).Where(x => x.IsOnline()));
-
-            var shares = Reconnaissance.GetShares(ips.ToArray());
+//            foreach (var adapter in result)
+//                ips.AddRange(adapter.Addresses.Select(x => x.IP).Where(x => x.IsOnline()));
 
             Console.ReadLine();
         }
