@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
@@ -9,14 +10,12 @@ namespace Tools.Structures
 {
     public class AdapterInterface
     {
-        public IPAddress IP { get; private set; }
-        public byte PhysicalID { get; private set; }
+        public NetworkInterface Adapter { get; private set; }
         public BindingList<ARP> Addresses = new BindingList<ARP>();
 
         public AdapterInterface(IPAddress ip, byte pid)
         {
-            IP = ip;
-            PhysicalID = pid;
+            SetAdapter(ip);
         }
 
         public AdapterInterface(string unparsedAdapterString)
@@ -25,8 +24,10 @@ namespace Tools.Structures
             string adapterHeaderFilter = @"Interface.*?(Type)";
             string addressFilter       = @"(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b).*?(static|dynamic)";
 
-            IP         = IPAddress.Parse(Regex.Matches(unparsedAdapterString, adapterInfoFilter)[0].Value);
-            PhysicalID = Convert.ToByte(Regex.Matches(unparsedAdapterString, adapterInfoFilter)[1].Value, 16);
+            var IP         = IPAddress.Parse(Regex.Matches(unparsedAdapterString, adapterInfoFilter)[0].Value);
+
+            if (IP != null)
+                SetAdapter(IP);
 
             unparsedAdapterString = Regex.Replace(unparsedAdapterString, adapterHeaderFilter, string.Empty);
 
@@ -42,6 +43,21 @@ namespace Tools.Structures
 
                 Addresses.Add(newArp);
             }
+        }
+
+        private void SetAdapter(IPAddress ip)
+        {
+            byte[] ipBytes = ip.GetAddressBytes();
+
+            foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                foreach (IPAddress address in adapter.GetIPProperties().UnicastAddresses.Select(x => x.Address))
+                {
+                    if (address.GetAddressBytes().SequenceEqual(ipBytes))
+                        this.Adapter = adapter;
+                }
+            }
+               
         }
     }
 }

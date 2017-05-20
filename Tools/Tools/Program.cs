@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using Tools.Host;
 using Tools.Modules;
@@ -11,7 +12,9 @@ namespace Tools
         {
             //OutputLocalMachineInfo();
 
-            var result = Reconnaissance.ARP("");
+            NetworkInterface[] adps = NetworkInterface.GetAllNetworkInterfaces();
+
+            var result = Reconnaissance.ARP();
             Console.WriteLine("proc done");
 
             Console.ReadLine();

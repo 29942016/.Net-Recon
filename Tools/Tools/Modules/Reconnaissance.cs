@@ -25,7 +25,7 @@ namespace Tools.Modules
             return reply;
         }
 
-        public static HashSet<AdapterInterface> ARP(string args)
+        public static HashSet<AdapterInterface> ARP()
         {
             Process cmdlet = new Process()
             {
@@ -55,8 +55,5 @@ namespace Tools.Modules
         #region File System
 
         #endregion
-
-        #region 
-
     }
 }
