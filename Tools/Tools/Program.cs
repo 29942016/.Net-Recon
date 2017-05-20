@@ -11,7 +11,7 @@ namespace Tools
         {
             //OutputLocalMachineInfo();
 
-            Reconnaissance.ARP("");
+            var result = Reconnaissance.ARP("");
             Console.WriteLine("proc done");
 
             Console.ReadLine();

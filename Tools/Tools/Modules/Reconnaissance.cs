@@ -6,13 +6,15 @@ using System.Text;
 using Tools.Host;
 using Tools.Structures;
 using Tools.Static;
-using System.Text.RegularExpressions;
+using Tools.Modules.Internal;
 
 namespace Tools.Modules
 {
     public static class Reconnaissance
     {
         private static bool _HasAdmin => (LocalMachine.Privilege == Enumerations.ExecutionLevel.Administrator);
+
+        #region Networking
 
         public static PingReply Ping(IPAddress ip, string data = "", int timeout = 128)
         {
@@ -44,22 +46,17 @@ namespace Tools.Modules
             while (!cmdlet.StandardOutput.EndOfStream)
                 stdOut += cmdlet.StandardOutput.ReadLine();
 
-            HashSet<AdapterInterface> arpTable = ParseArpString(stdOut);
+            HashSet<AdapterInterface> arpTable = Functions.ParseArpString(stdOut);
             return arpTable;
         }
 
-        internal static HashSet<AdapterInterface> ParseArpString(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return null;
+        #endregion
 
-            string adapterFilter = @"Interface.*?(?=Interface|$)";
-            HashSet<AdapterInterface> interfaces = new HashSet<AdapterInterface>();
+        #region File System
 
-            foreach (Match adapter in Regex.Matches(input, adapterFilter))
-                interfaces.Add(new AdapterInterface(adapter.Value));
+        #endregion
 
-            return interfaces;
-        }
+        #region 
+
     }
 }
