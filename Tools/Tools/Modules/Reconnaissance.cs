@@ -59,7 +59,7 @@ namespace Tools.Modules
         /// Returns a list of mounted drives, filtered by the passed parameter drive type.
         /// if none is specified, return all drives.
         /// </summary>
-        public static List<DriveInfo> GetMounts(DriveType type = DriveType.Unknown)
+        public static List<DriveInfo> GetMountedDrives(DriveType type = DriveType.Unknown)
         {
             if (type == DriveType.Unknown)
                 return DriveInfo.GetDrives().ToList();

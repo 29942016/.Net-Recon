@@ -10,13 +10,8 @@ namespace Tools
         static void Main(string[] args)
         {
             var result = Reconnaissance.SendARP();
-            var drives = Reconnaissance.GetMounts();
+            var drives = Reconnaissance.GetMountedDrives();
             Console.WriteLine(drives);
-
-//            List<IPAddress> ips = new List<IPAddress>();
-
-//            foreach (var adapter in result)
-//                ips.AddRange(adapter.Addresses.Select(x => x.IP).Where(x => x.IsOnline()));
 
             Console.ReadLine();
         }
