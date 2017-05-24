@@ -56,6 +56,7 @@
     <Compile Include="Static\Enumerations.cs" />
     <Compile Include="Modules\Internal\WinAPI.cs" />
     <Compile Include="Structures\sRemoteShare.cs" />
+    <Compile Include="Structures\sService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

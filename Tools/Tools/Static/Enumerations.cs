@@ -19,6 +19,14 @@ namespace Tools.Static
             [Description("dynamic")]
             dynamic
         }
+
+        public enum Protocol
+        {
+            [Description("TCP")]
+            UDP,
+            [Description("UDP")]
+            TCP
+        }
     }
 
 

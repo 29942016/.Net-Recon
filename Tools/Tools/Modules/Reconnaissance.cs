@@ -51,6 +51,17 @@ namespace Tools.Modules
             return arpTable;
         }
 
+        /// <summary>
+        /// Returns all the listening ports on the local host.
+        /// </summary>
+        /// <returns></returns>
+        public static HashSet<Service> GetListeningServices()
+        {
+            // netstat -aon | find /i "listeninig"
+            //TODO
+            return null;
+        }
+
         #endregion
 
         #region File System
