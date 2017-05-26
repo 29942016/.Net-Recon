@@ -13,7 +13,7 @@ namespace Tools.Structures
           
         private int _Pid;
 
-        public sService(string unparsedNetstatCommand)
+        public Service(string unparsedNetstatCommand)
         {
 
 

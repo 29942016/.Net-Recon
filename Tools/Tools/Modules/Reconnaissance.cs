@@ -54,7 +54,6 @@ namespace Tools.Modules
         /// <summary>
         /// Returns all the listening ports on the local host.
         /// </summary>
-        /// <returns></returns>
         public static HashSet<Service> GetListeningServices()
         {
             // netstat -aon | find /i "listeninig"
